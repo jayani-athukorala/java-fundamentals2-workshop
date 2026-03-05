@@ -133,6 +133,6 @@ public class Main {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
 
         IO.println("Converted at: "+ today + " " + timeNow.format(formatter) +
-                "================================================");
+                "\n================================================");
     }
 }
