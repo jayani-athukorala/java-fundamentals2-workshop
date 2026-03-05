@@ -166,13 +166,13 @@ public class Converter {
                 IO.print("Enter Temperature in Celsius (°C) : ");
                 value = scanner.nextDouble();
                 result = (value * 9/5) + 32;
-                displayResult = value + " Celsius (°C) = " + result + " Fahrenheit (°F)";
+                displayResult = value + " °C = " + result + " °F";
                 break;
             case 2 :
                 IO.print("Enter Temperature in Fahrenheit (°F) : ");
                 value = scanner.nextDouble();
                 result = (value - 32) * 5/9;
-                displayResult = value + " Fahrenheit (°F) = " + result + " Celsius (°C)";
+                displayResult = value + " °F = " + result + " °C";
                 break;
         }
 
@@ -278,8 +278,8 @@ public class Converter {
         double value, result;
 
         IO.print("""
-                1. L/100KM <-> KM/L
-                2. KM/L <-> L/100KM
+                1. L/100KM -> KM/L
+                2. KM/L -> L/100KM
                 Select Option (1/2) :\s""");
         int option = getOption(1, 2);
 
@@ -303,7 +303,45 @@ public class Converter {
 
     //This method converts KB ↔ MB ↔ GB
     static String dataStorageConverter(){
+        String displayResult = "";
+        double value, result;
 
+        IO.print("""
+                1. KB -> MB
+                2. MB -> KB
+                2. MB -> GB
+                3. GB -> MB
+                Select Option (1/3) :\s""");
+        int option = getOption(1, 2);
+
+        switch (option){
+            case 1 :
+                IO.print("Enter Data Storage Type in KB : ");
+                value = scanner.nextDouble();
+                result = value/1024;
+                displayResult = value + " KB = " + result + " MB";
+                break;
+            case 2 :
+                IO.print("Enter Data Storage Type in MB : ");
+                value = scanner.nextDouble();
+                result = value*1024;
+                displayResult = value + " MB = " + result + " KB";
+                break;
+            case 3 :
+                IO.print("Enter Data Storage Type in MB : ");
+                value = scanner.nextDouble();
+                result = value/1024;
+                displayResult = value + " MB = " + result + " GB";
+                break;
+            case 4 :
+                IO.print("Enter Data Storage Type in GB : ");
+                value = scanner.nextDouble();
+                result = value*1024;
+                displayResult = value + " GB = " + result + " MB";
+                break;
+        }
+
+        return displayResult;
     }
 
     //This method computes BMI Value
