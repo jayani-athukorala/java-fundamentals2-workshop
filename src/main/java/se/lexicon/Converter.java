@@ -64,9 +64,9 @@ public class Converter {
             case 5 :
                 result = timeConverter();
                 break;
-//            case 6 :
-//                result = speedConverter();
-//                break;
+            case 6 :
+                result = speedConverter();
+                break;
 //            case 7 :
 //                result = fuelConsumptionConverter();
 //                break;
@@ -242,11 +242,36 @@ public class Converter {
 
         return displayResult;
     }
-//
-//    static double speedConverter(){
-//
-//    }
-//
+
+    //This method converts km/h ↔ m/s
+    static String speedConverter(){
+        String displayResult = "";
+        double value, result;
+
+        IO.print("""
+                1. KM/H -> M/S
+                2. M/S -> KM/H
+                Select Option (1/2) :\s""");
+        int option = getOption(1, 2);
+
+        switch (option){
+            case 1 :
+                IO.print("Enter Speed in KM/H : ");
+                value = scanner.nextDouble();
+                result = value / 3.6;
+                displayResult = value + " KM/H = " + result + " M/S";
+                break;
+            case 2 :
+                IO.print("Enter Speed in M/S : ");
+                value = scanner.nextDouble();
+                result = value * 3.60;
+                displayResult = value + " M/S = " + result + " KM/H";
+                break;
+        }
+
+        return displayResult;
+    }
+
 //    static double fuelConsumptionConverter(){
 //
 //    }
