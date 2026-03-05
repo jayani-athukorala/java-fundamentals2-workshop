@@ -1,13 +1,15 @@
 package se.lexicon;
 
-import java.util.Objects;
 import java.util.Scanner;
 
 public class Converter {
 
     public static final Scanner scanner = new Scanner(System.in);
 
-    //This method will convert SEK <-> USD and SEK <-> EUR
+    // =======================
+    // Currency Converter
+    // =======================
+    /** This method will convert SEK <-> USD and SEK <-> EUR */
     static String currencyConverter(){
         String displayResult = "";
         double value, result;
@@ -24,33 +26,37 @@ public class Converter {
             case 1 :
                 IO.print("Enter Currency in SEK : ");
                 value = scanner.nextDouble();
-                result = value * 0.11; // SEK -> USD
-                displayResult = value + " SEK = " + result + " USD";
+                result = ConverterFormulas.sekToUsd(value); // SEK -> USD
+                // Format values to 2 decimal places
+                displayResult = String.format("%.2f SEK = %.2f USD", value, result);
                 break;
             case 2 :
                 IO.print("Enter Currency in USD : ");
                 value = scanner.nextDouble();
-                result = value / 0.11; // USD -> SEK
-                displayResult = value + " USD = " + result + " SEK";
+                result = ConverterFormulas.usdToSek(value); // USD -> SEK
+                displayResult = String.format("%.2f USD = %.2f SEK", value, result);
                 break;
             case 3 :
                 IO.print("Enter Currency in SEK : ");
                 value = scanner.nextDouble();
-                result = value * 0.093; // SEK -> EUR
-                displayResult = value + " SEK = " + result + " EUR";
+                result = ConverterFormulas.sekToEur(value); // SEK -> EUR
+                displayResult = String.format("%.2f SEK = %.2f EUR", value, result);
                 break;
             case 4 :
                 IO.print("Enter Currency in EUR : ");
                 value = scanner.nextDouble();
-                result = value / 0.093; // EUR -> SEK
-                displayResult = value + " EUR = " + result + " SEK";
+                result = ConverterFormulas.eurToSek(value); // EUR -> SEK
+                displayResult = String.format("%.2f EUR = %.2f SEK", value, result);
                 break;
         }
 
         return displayResult;
     }
 
-    //This method will convert °C <-> °F
+    // =======================
+    // Temperature Converter
+    // =======================
+    /** This method will convert °C <-> °F */
     static String temperatureConverter(){
         String displayResult = "";
         double value, result;
@@ -65,56 +71,88 @@ public class Converter {
             case 1 :
                 IO.print("Enter Temperature in Celsius (°C) : ");
                 value = scanner.nextDouble();
-                result = (value * 9/5) + 32;
-                displayResult = value + " °C = " + result + " °F";
+                result = ConverterFormulas.celsiusToFahrenheit(value);
+                displayResult = String.format("%.2f °C = %.2f °F", value, result);
                 break;
             case 2 :
                 IO.print("Enter Temperature in Fahrenheit (°F) : ");
                 value = scanner.nextDouble();
-                result = (value - 32) * 5/9;
-                displayResult = value + " °F = " + result + " °C";
+                result = ConverterFormulas.fahrenheitToCelsius(value);
+                displayResult = String.format("%.2f °F = %.2f °C", value, result);
                 break;
         }
 
         return displayResult;
     }
 
-    //This method will convert KM <-> M and KG <-> G
-    static String lengthWeightConverter(String type){
+    // =======================
+    // Length Converter
+    // =======================
+    /** This method will convert KM <-> M */
+    static String lengthConverter(){
 
-        String convertOption1 = "", convertOption2 = "", displayResult = "";
+        String displayResult = "";
         double value, result;
 
-        if(Objects.equals(type, "Length")){
-            convertOption1 = "Kilometers (KM)";
-            convertOption2 = "Meters (M)";
-        }else{
-            convertOption1 = "Kilograms (KG)";
-            convertOption2 = "Grams (G)";
-        }
-        IO.print("1. "+convertOption1+" -> "+convertOption2+"\n" +
-                 "2. "+convertOption2+" -> "+convertOption1+"\n " +
-                 "Select Option (1-2) : ");
+        IO.print("""
+                1. Kilometers (KM) -> Meters (M)
+                2. Meters (M) -> Kilometers (KM)
+                Select Option (1-2) : \s""");
         int option = Utility.getOption(1, 2);
         switch (option){
             case 1 :
-                IO.print("Enter Value in "+convertOption1+" : ");
+                IO.print("Enter Value in Kilometers (KM) : ");
                 value = scanner.nextDouble();
-                result = value*1000;
-                displayResult = value + " "+convertOption1+" = "+result+ " "+convertOption2;
+                result = ConverterFormulas.kmToM(value);
+                displayResult = String.format("%.2f KM = %.2f M", value, result);
                 break;
             case 2 :
-                IO.print("Enter Value in "+convertOption2+" : ");
+                IO.print("Enter Value in Meters (M) : ");
                 value = scanner.nextDouble();
-                result = value/1000;
-                displayResult = value + " "+convertOption2+" = "+result+ " "+convertOption1;
+                result = ConverterFormulas.mToKm(value);
+                displayResult = String.format("%.2f M = %.2f KM", value, result);
                 break;
         }
 
         return displayResult;
     }
 
-    //This method will convert Hours ↔ Minutes
+    // =======================
+    // Weight Converter
+    // =======================
+    /** This method will convert KG <-> G */
+    static String weightConverter(){
+
+        String displayResult = "";
+        double value, result;
+
+        IO.print("""
+                1. Kilograms (KG) -> Grams (G)
+                2. Grams (G) -> Kilograms (KG)
+                Select Option (1-2) : \s""");
+        int option = Utility.getOption(1, 2);
+        switch (option){
+            case 1 :
+                IO.print("Enter Value in Kilograms (KG) : ");
+                value = scanner.nextDouble();
+                result = ConverterFormulas.kgToG(value);
+                displayResult = String.format("%.2f KG = %.2f G", value, result);
+                break;
+            case 2 :
+                IO.print("Enter Value in Grams (G) : ");
+                value = scanner.nextDouble();
+                result = ConverterFormulas.gToKg(value);
+                displayResult = String.format("%.2f G = %.2f KG", value, result);
+                break;
+        }
+
+        return displayResult;
+    }
+
+    // =======================
+    // Time Converter
+    // =======================
+    /** This method will convert Hours ↔ Minutes */
     static String timeConverter(){
         String displayResult = "";
         double value, result;
@@ -129,13 +167,13 @@ public class Converter {
             case 1 :
                 IO.print("Enter Time in Hours : ");
                 value = scanner.nextDouble();
-                result = value * 60; // Hours > Minutes
+                result = ConverterFormulas.hoursToMinutes(value); // Hours > Minutes
                 displayResult = value + " Hours = " + result + " Minutes";
                 break;
             case 2 :
                 IO.print("Enter Time in Minutes : ");
                 value = scanner.nextDouble();
-                result = value / 60; // Minutes -> Hours
+                result = ConverterFormulas.minutesToHours(value); // Minutes -> Hours
                 displayResult = value + " Minutes = " + result + " Hours";
                 break;
         }
@@ -143,7 +181,10 @@ public class Converter {
         return displayResult;
     }
 
-    //This method converts km/h ↔ m/s
+    // =======================
+    // Speed Converter
+    // =======================
+    /** This method converts km/h ↔ m/s */
     static String speedConverter(){
         String displayResult = "";
         double value, result;
@@ -158,21 +199,24 @@ public class Converter {
             case 1 :
                 IO.print("Enter Speed in KM/H : ");
                 value = scanner.nextDouble();
-                result = value / 3.6;
-                displayResult = value + " KM/H = " + result + " M/S";
+                result = ConverterFormulas.kmhToMs(value);
+                displayResult = String.format("%.2f KM/H = %.2f M/S", value, result);
                 break;
             case 2 :
                 IO.print("Enter Speed in M/S : ");
                 value = scanner.nextDouble();
-                result = value * 3.60;
-                displayResult = value + " M/S = " + result + " KM/H";
+                result = ConverterFormulas.msToKmh(value);
+                displayResult = String.format("%.2f M/S = %.2f KM/H", value, result);
                 break;
         }
 
         return displayResult;
     }
 
-    //This method converts L/100km ↔ km/L
+    // =======================
+    // Fuel Consumption Converter
+    // =======================
+    /** This method converts L/100km ↔ km/L */
     static String fuelConsumptionConverter(){
         String displayResult = "";
         double value, result;
@@ -187,21 +231,24 @@ public class Converter {
             case 1 :
                 IO.print("Enter Fuel Consumption in L/100KM : ");
                 value = scanner.nextDouble();
-                result = 100/value;
-                displayResult = value + " L/100KM = " + result + " KM/L";
+                result = ConverterFormulas.lPer100kmToKmPerL(value);
+                displayResult = String.format("%.2f L/100KM = %.2f KM/L", value, result);
                 break;
             case 2 :
                 IO.print("Enter Fuel Consumption in KM/L : ");
                 value = scanner.nextDouble();
-                result = 100/value;
-                displayResult = value + " KM/L = " + result + " L/100KM";
+                result = ConverterFormulas.kmPerLToLPer100km(value);
+                displayResult = String.format("%.2f KM/L = %.2f L/100KM", value, result);
                 break;
         }
 
         return displayResult;
     }
 
-    //This method converts KB ↔ MB ↔ GB
+    // =======================
+    // Data Storage Converter
+    // =======================
+    /** This method converts KB ↔ MB ↔ GB */
     static String dataStorageConverter(){
         String displayResult = "";
         double value, result;
@@ -218,61 +265,55 @@ public class Converter {
             case 1 :
                 IO.print("Enter Data Storage Type in KB : ");
                 value = scanner.nextDouble();
-                result = value/1024;
-                displayResult = value + " KB = " + result + " MB";
+                result = ConverterFormulas.kbToMb(value);
+                displayResult = String.format("%.2f KB = %.2f MB", value, result);
                 break;
             case 2 :
                 IO.print("Enter Data Storage Type in MB : ");
                 value = scanner.nextDouble();
-                result = value*1024;
-                displayResult = value + " MB = " + result + " KB";
+                result = ConverterFormulas.mbToKb(value);
+                displayResult = String.format("%.2f MB = %.2f KB", value, result);
                 break;
             case 3 :
                 IO.print("Enter Data Storage Type in MB : ");
                 value = scanner.nextDouble();
-                result = value/1024;
-                displayResult = value + " MB = " + result + " GB";
+                result = ConverterFormulas.mbToGb(value);
+                displayResult = String.format("%.2f MB = %.2f GB", value, result);
                 break;
             case 4 :
                 IO.print("Enter Data Storage Type in GB : ");
                 value = scanner.nextDouble();
-                result = value*1024;
-                displayResult = value + " GB = " + result + " MB";
+                result = ConverterFormulas.gbToMb(value);
+                displayResult = String.format("%.2f GB = %.2f MB", value, result);
                 break;
         }
 
         return displayResult;
     }
 
-    //This method computes BMI Value
+    // =======================
+    // BMI Converter
+    // =======================
+    /** This method computes BMI Value */
     static String bmiConverter(){
+        String displayResult;
         IO.print("Enter Height (M): ");
         double height = scanner.nextDouble();
 
         IO.print("Enter Weight (KG) :");
         double weight = scanner.nextDouble();
 
-        double bmiValue = weight/(height*height);
-        return "BMI : " + bmiValue + "\nBMI Category : " + bmiCategory(bmiValue);
+        double bmiValue = ConverterFormulas.calculateBmi(height, weight);
+        displayResult = String.format(" BMI = %.2f \n BMI Category = %s", bmiValue, ConverterFormulas.bmiCategory(bmiValue));
+        return displayResult;
     }
 
-    //This method returns the BMI category
-    static String bmiCategory(double bmiValue){
-        String bmiCategory;
-        if (bmiValue < 18.5) {
-            bmiCategory = "Underweight";
-        } else if (bmiValue < 25) {
-            bmiCategory = "Normal weight";
-        } else if (bmiValue < 30) {
-            bmiCategory = "Overweight";
-        } else {
-            bmiCategory = "Obese";
-        }
-        return  bmiCategory;
-    }
-
-    //This method converts the student's Mark -> Grade
+    // =======================
+    // Grade Converter
+    // =======================
+    /** This method converts the student's Mark -> Grade */
     static String gradeConverter(){
+        String displayResult;
         IO.println("Enter Student's Mark (%) : ");
         int studentMark = scanner.nextInt();
         try {
@@ -280,25 +321,12 @@ public class Converter {
                 throw new IllegalArgumentException();
             }
         }catch (Exception e){
-            IO.println("Error! Mark should be a value between 0 -> 100");
+            IO.println("Error! Mark should be a value between 0 - 100");
             gradeConverter();
         }
 
-        char studentGrade;
-        if (studentMark > 84){
-            studentGrade = 'A';
-        } else if (studentMark > 74) {
-            studentGrade = 'B';
-        }else if (studentMark > 64) {
-                studentGrade = 'C';
-        }else if (studentMark > 49) {
-            studentGrade = 'D';
-        } else if (studentMark > 34){
-            studentGrade = 'E';
-        }else {
-            studentGrade = 'F';
-        }
-        return "Students Grade for Mark "+studentMark+" = " + studentGrade;
+        displayResult = String.format("%d %% Mark = Grade %s", studentMark, ConverterFormulas.markToGrade(studentMark));
+        return displayResult;
     }
 
 }

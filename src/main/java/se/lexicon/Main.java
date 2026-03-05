@@ -1,13 +1,11 @@
 package se.lexicon;
 
-import java.util.Scanner;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
 public class Main {
 
-    public static final Scanner scanner = new Scanner(System.in);
     static void main(){
         boolean repeatLoop = true;
 
@@ -20,7 +18,6 @@ public class Main {
     }
 
     static int displayMenu(){
-
         String[] tools = {
                 "Currency (SEK ↔ USD, SEK ↔ EUR)",
                 "Temperature (Celsius ↔ Fahrenheit)",
@@ -39,7 +36,7 @@ public class Main {
             IO.println(i+1 +". " + tools[i] + " Converter");
         }
         IO.println("11. Exit");
-        IO.println("=============================================");
+        IO.println("================================================");
 
         IO.print("Choose Option (1-11): ");
         return Utility.getOption(1, 11);
@@ -50,7 +47,7 @@ public class Main {
         boolean repeatSameConverter = true;
 
         while (repeatSameConverter) {
-            String str, result = "";
+            String result;
             switch (selectedOption) {
                 case 1:
                     result = Converter.currencyConverter();
@@ -59,12 +56,10 @@ public class Main {
                     result = Converter.temperatureConverter();
                     break;
                 case 3:
-                    str = "Length";
-                    result = Converter.lengthWeightConverter(str);
+                    result = Converter.lengthConverter();
                     break;
                 case 4:
-                    str = "Weight";
-                    result = Converter.lengthWeightConverter(str);
+                    result = Converter.weightConverter();
                     break;
                 case 5:
                     result = Converter.timeConverter();
@@ -86,13 +81,21 @@ public class Main {
                     break;
                 default:
                     IO.println("Exiting the converter....\nThank you. Come Again!");
-                    IO.println("\n=============================================");
+                    IO.println("================================================");
                     return false;
             }
             IO.println("Result : " + result);
             //Call displayDateTime method to display current time
             displayDateTime();
-            repeatSameConverter = nextStep(); // ask user what to do
+
+            try {
+                // Pause for 2 seconds (2000 milliseconds)
+                Thread.sleep(2000);
+            }  catch (InterruptedException e) {
+                Thread.currentThread().interrupt(); // Restore interrupted status
+            }
+
+            repeatSameConverter = nextStep(); // Ask user what to do
         }
         return true;
     }
@@ -116,7 +119,7 @@ public class Main {
                 return false;  // go back to main menu
             case 3:
                 IO.println("Exiting the converter....\nThank you. Come Again!");
-                IO.println("\n=============================================");
+                IO.println("================================================");
                 System.exit(0);
         }
 
@@ -129,7 +132,7 @@ public class Main {
         LocalTime timeNow = LocalTime.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
 
-        IO.println("Converted at: "+ today + " " + timeNow.format(formatter) + "" +
-                "\n=============================================");
+        IO.println("Converted at: "+ today + " " + timeNow.format(formatter) +
+                "================================================");
     }
 }
