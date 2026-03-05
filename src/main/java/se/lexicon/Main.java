@@ -39,7 +39,7 @@ public class Main {
             IO.println(i+1 +". " + tools[i] + " Converter");
         }
         IO.println("11. Exit");
-        IO.println("\n=============================================");
+        IO.println("=============================================");
 
         IO.print("Choose Option (1-11): ");
         return Utility.getOption(1, 11);
