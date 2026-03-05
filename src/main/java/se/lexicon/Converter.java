@@ -47,9 +47,9 @@ public class Converter {
 
         String str, result = "";
         switch (selectedOption){
-//            case 1 :
-//                result = currencyConverter();
-//                break;
+            case 1 :
+                result = currencyConverter();
+                break;
             case 2 :
                 result = temperatureConverter();
                 break;
@@ -106,9 +106,47 @@ public class Converter {
         }
         return option;
     }
-//    static double currencyConverter(){
-//
-//    }
+    static String currencyConverter(){
+        String displayResult = "";
+        double value, result;
+
+        IO.print("""
+                1. SEK -> USD
+                2. USD -> SEK
+                3. SEK -> EUR
+                4. EUR -> SEK
+                Select Option (1/4) :\s""");
+        int option = getOption(1, 4);
+
+        switch (option){
+            case 1 :
+                IO.print("Enter Currency in SEK : ");
+                value = scanner.nextDouble();
+                result = value * 0.11; // SEK -> USD
+                displayResult = value + " SEK = " + result + " USD";
+                break;
+            case 2 :
+                IO.print("Enter Currency in USD : ");
+                value = scanner.nextDouble();
+                result = value / 0.11; // USD -> SEK
+                displayResult = value + " USD = " + result + " SEK";
+                break;
+            case 3 :
+                IO.print("Enter Currency in SEK : ");
+                value = scanner.nextDouble();
+                result = value * 0.093; // SEK -> EUR
+                displayResult = value + " SEK = " + result + " EUR";
+                break;
+            case 4 :
+                IO.print("Enter Currency in EUR : ");
+                value = scanner.nextDouble();
+                result = value / 0.093; // EUR -> SEK
+                displayResult = value + " EUR = " + result + " SEK";
+                break;
+        }
+
+        return displayResult;
+    }
 
     //This method will convert °C <-> °F
     static String temperatureConverter(){
@@ -116,8 +154,8 @@ public class Converter {
         double value, result;
 
         IO.print("""
-                1. Convert Celsius (°C) -> Fahrenheit (°F)
-                2. Convert Fahrenheit (°F) -> Celsius (°C)
+                1. Celsius (°C) -> Fahrenheit (°F)
+                2. Fahrenheit (°F) -> Celsius (°C)
                 Select Option (1/2) :\s""");
         int option = getOption(1, 2);
 
@@ -152,8 +190,8 @@ public class Converter {
             convertOption1 = "Kilograms (KG)";
             convertOption2 = "Grams (G)";
         }
-        IO.print("1. Convert "+convertOption1+" -> "+convertOption2+"\n" +
-                 "2. Convert "+convertOption2+" -> "+convertOption1+"\n " +
+        IO.print("1. "+convertOption1+" -> "+convertOption2+"\n" +
+                 "2. "+convertOption2+" -> "+convertOption1+"\n " +
                  "Select Option (1/2) : ");
         int option = getOption(1, 2);
         switch (option){
