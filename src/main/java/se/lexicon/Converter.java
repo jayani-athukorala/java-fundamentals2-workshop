@@ -10,11 +10,14 @@ public class Converter {
 
     public static final Scanner scanner = new Scanner(System.in);
     static void main(){
+        boolean repeatLoop = true;
 
-        //Call displayMenu method to display menu
-        int selectedOption = displayMenu();
-        //Call the specific converter based on selected option
-        selectConverter(selectedOption);
+        while (repeatLoop) {
+            //Call displayMenu method to display menu
+            int selectedOption = displayMenu();
+            //Call the specific converter based on selected option
+            repeatLoop = selectConverter(selectedOption);
+        }
     }
 
     static int displayMenu(){
@@ -43,50 +46,56 @@ public class Converter {
         return getOption(1, 11);
     }
 
-    static void selectConverter(int selectedOption){
+    //This method will switch to required Converter
+    static boolean selectConverter(int selectedOption){
+        boolean repeatSameConverter = true;
 
-        String str, result = "";
-        switch (selectedOption){
-            case 1 :
-                result = currencyConverter();
-                break;
-            case 2 :
-                result = temperatureConverter();
-                break;
-            case 3 :
-                str = "Length";
-                result = lengthWeightConverter(str);
-                break;
-            case 4 :
-                str = "Weight";
-                result = lengthWeightConverter(str);
-                break;
-            case 5 :
-                result = timeConverter();
-                break;
-            case 6 :
-                result = speedConverter();
-                break;
-            case 7 :
-                result = fuelConsumptionConverter();
-                break;
-            case 8 :
-                result = dataStorageConverter();
-                break;
-            case 9 :
-                result = bmiConverter();
-                break;
-            case 10 :
-                result = gradeConverter();
-                break;
-            default:
-                IO.println("Exiting the converter....\nThank you. Come Again!");
-                IO.println("======================================");
-                return;
+        while (repeatSameConverter) {
+            String str, result = "";
+            switch (selectedOption) {
+                case 1:
+                    result = currencyConverter();
+                    break;
+                case 2:
+                    result = temperatureConverter();
+                    break;
+                case 3:
+                    str = "Length";
+                    result = lengthWeightConverter(str);
+                    break;
+                case 4:
+                    str = "Weight";
+                    result = lengthWeightConverter(str);
+                    break;
+                case 5:
+                    result = timeConverter();
+                    break;
+                case 6:
+                    result = speedConverter();
+                    break;
+                case 7:
+                    result = fuelConsumptionConverter();
+                    break;
+                case 8:
+                    result = dataStorageConverter();
+                    break;
+                case 9:
+                    result = bmiConverter();
+                    break;
+                case 10:
+                    result = gradeConverter();
+                    break;
+                default:
+                    IO.println("Exiting the converter....\nThank you. Come Again!");
+                    IO.println("======================================");
+                    return false;
+            }
+            IO.println("Result : " + result);
+            //Call displayDateTime method to display current time
+            displayDateTime();
+            repeatSameConverter = nextStep(); // ask user what to do
         }
-        IO.println("Result : " +result);
-        //Call displayDateTime method to display current time
-        displayDateTime();
+        return true;
     }
 
     //This method will validate the user input options
@@ -101,10 +110,36 @@ public class Converter {
                 break;
             }catch (Exception e){
                 scanner.nextLine(); // clear invalid input
-                System.out.print("Invalid option! Please enter a valid option.(" + min + " : " + max + ") : ");
+                System.out.print("Invalid option! Please enter a valid option.(" + min + "-" + max + ") : ");
             }
         }
         return option;
+    }
+
+    //This method will decide whether user need to continue or not
+    static boolean nextStep(){
+
+        IO.print("""            
+            What do you want to do next?
+            1. Try Again
+            2. Return to Main Menu
+            3. Exit
+            Select Option (1-3):\s""");
+
+        int option = getOption(1,3);
+
+        switch(option){
+            case 1:
+                return true;   // repeat same converter
+            case 2:
+                return false;  // go back to main menu
+            case 3:
+                IO.println("Exiting the converter....\nThank you. Come Again!");
+                IO.println("======================================");
+                System.exit(0);
+        }
+
+        return false;
     }
 
     //This method will convert SEK <-> USD and SEK <-> EUR
@@ -117,7 +152,7 @@ public class Converter {
                 2. USD -> SEK
                 3. SEK -> EUR
                 4. EUR -> SEK
-                Select Option (1/4) :\s""");
+                Select Option (1-4) :\s""");
         int option = getOption(1, 4);
 
         switch (option){
@@ -158,7 +193,7 @@ public class Converter {
         IO.print("""
                 1. Celsius (°C) -> Fahrenheit (°F)
                 2. Fahrenheit (°F) -> Celsius (°C)
-                Select Option (1/2) :\s""");
+                Select Option (1-2) :\s""");
         int option = getOption(1, 2);
 
         switch (option){
@@ -194,7 +229,7 @@ public class Converter {
         }
         IO.print("1. "+convertOption1+" -> "+convertOption2+"\n" +
                  "2. "+convertOption2+" -> "+convertOption1+"\n " +
-                 "Select Option (1/2) : ");
+                 "Select Option (1-2) : ");
         int option = getOption(1, 2);
         switch (option){
             case 1 :
@@ -222,7 +257,7 @@ public class Converter {
         IO.print("""
                 1. Hours -> Minutes
                 2. Minutes -> Hours
-                Select Option (1/2) :\s""");
+                Select Option (1-2) :\s""");
         int option = getOption(1, 2);
 
         switch (option){
@@ -251,7 +286,7 @@ public class Converter {
         IO.print("""
                 1. KM/H -> M/S
                 2. M/S -> KM/H
-                Select Option (1/2) :\s""");
+                Select Option (1-2) :\s""");
         int option = getOption(1, 2);
 
         switch (option){
@@ -280,7 +315,7 @@ public class Converter {
         IO.print("""
                 1. L/100KM -> KM/L
                 2. KM/L -> L/100KM
-                Select Option (1/2) :\s""");
+                Select Option (1-2) :\s""");
         int option = getOption(1, 2);
 
         switch (option){
@@ -309,10 +344,10 @@ public class Converter {
         IO.print("""
                 1. KB -> MB
                 2. MB -> KB
-                2. MB -> GB
-                3. GB -> MB
-                Select Option (1/3) :\s""");
-        int option = getOption(1, 2);
+                3. MB -> GB
+                4. GB -> MB
+                Select Option (1-4) :\s""");
+        int option = getOption(1, 4);
 
         switch (option){
             case 1 :
@@ -407,6 +442,7 @@ public class Converter {
         LocalTime timeNow = LocalTime.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
 
-        IO.println("Converted at: "+ today + " " + timeNow.format(formatter));
+        IO.println("Converted at: "+ today + " " + timeNow.format(formatter) + "" +
+                "\n=============================================");
     }
 }
