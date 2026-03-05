@@ -61,9 +61,9 @@ public class Converter {
                 str = "Weight";
                 result = lengthWeightConverter(str);
                 break;
-//            case 5 :
-//                result = timeConverter();
-//                break;
+            case 5 :
+                result = timeConverter();
+                break;
 //            case 6 :
 //                result = speedConverter();
 //                break;
@@ -106,6 +106,8 @@ public class Converter {
         }
         return option;
     }
+
+    //This method will convert SEK <-> USD and SEK <-> EUR
     static String currencyConverter(){
         String displayResult = "";
         double value, result;
@@ -212,9 +214,34 @@ public class Converter {
         return displayResult;
     }
 
-//    static double timeConverter(){
-//
-//    }
+    //This method will convert Hours ↔ Minutes
+    static String timeConverter(){
+        String displayResult = "";
+        double value, result;
+
+        IO.print("""
+                1. Hours -> Minutes
+                2. Minutes -> Hours
+                Select Option (1/2) :\s""");
+        int option = getOption(1, 2);
+
+        switch (option){
+            case 1 :
+                IO.print("Enter Time in Hours : ");
+                value = scanner.nextDouble();
+                result = value * 60; // Hours > Minutes
+                displayResult = value + " Hours = " + result + " Minutes";
+                break;
+            case 2 :
+                IO.print("Enter Time in Minutes : ");
+                value = scanner.nextDouble();
+                result = value / 60; // Minutes -> Hours
+                displayResult = value + " Minutes = " + result + " Hours";
+                break;
+        }
+
+        return displayResult;
+    }
 //
 //    static double speedConverter(){
 //
