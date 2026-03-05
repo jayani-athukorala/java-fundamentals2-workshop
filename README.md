@@ -19,7 +19,7 @@ src/main/java/se.lexicon/
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/jayani-athukorala/converter-app.git
+git clone https://github.com/jayani-athukorala/java-fundamentals2-workshop.git
 ```
 2. Open the project in your preferred IDE.
 
