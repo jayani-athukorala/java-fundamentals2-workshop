@@ -15,8 +15,6 @@ public class Converter {
         int selectedOption = displayMenu();
         //Call the specific converter based on selected option
         selectConverter(selectedOption);
-        //Call displayDateTime method to display current time
-        displayDateTime();
     }
 
     static int displayMenu(){
@@ -41,19 +39,8 @@ public class Converter {
         IO.println("11. Exit");
         IO.println("========================================");
 
-        try {
-            IO.print("Choose Option (1-11): ");
-            int option = scanner.nextInt();
-
-            if(option < 1  || option > 11){
-                throw new IllegalArgumentException();
-            }
-            return option;
-        }catch (Exception e){
-            IO.println("Invalid Input! The options Should be (1:11).");
-            scanner.nextLine();
-            return displayMenu();
-        }
+        IO.print("Choose Option (1-11): ");
+        return getOption(1, 11);
     }
 
     static void selectConverter(int selectedOption){
@@ -63,9 +50,9 @@ public class Converter {
 //            case 1 :
 //                result = currencyConverter();
 //                break;
-//            case 2 :
-//                result = temperatureConverter();
-//                break;
+            case 2 :
+                result = temperatureConverter();
+                break;
             case 3 :
                 str = "Length";
                 result = lengthWeightConverter(str);
@@ -93,21 +80,71 @@ public class Converter {
                 result = gradeConverter();
                 break;
             default:
-                break;
+                IO.println("Exiting the converter....\nThank you. Come Again!");
+                IO.println("======================================");
+                return;
         }
         IO.println("Result : " +result);
+        //Call displayDateTime method to display current time
+        displayDateTime();
     }
 
+    //This method will validate the user input options
+    static int getOption(int min, int max){
+        int option = 0;
+        while (true){
+            try {
+                option = scanner.nextInt();
+                if (option < min || option > max){
+                    throw new IllegalArgumentException();
+                }
+                break;
+            }catch (Exception e){
+                scanner.nextLine(); // clear invalid input
+                System.out.print("Invalid option! Please enter a valid option.(" + min + " : " + max + ") : ");
+            }
+        }
+        return option;
+    }
 //    static double currencyConverter(){
 //
 //    }
-//
-//    static double temperatureConverter(){
-//
-//    }
 
+    //This method will convert °C <-> °F
+    static String temperatureConverter(){
+        String displayResult = "";
+        double value, result;
+
+        IO.print("""
+                1. Convert Celsius (°C) -> Fahrenheit (°F)
+                2. Convert Fahrenheit (°F) -> Celsius (°C)
+                Select Option (1/2) :\s""");
+        int option = getOption(1, 2);
+
+        switch (option){
+            case 1 :
+                IO.print("Enter Temperature in Celsius (°C) : ");
+                value = scanner.nextDouble();
+                result = (value * 9/5) + 32;
+                displayResult = value + " Celsius (°C) = " + result + " Fahrenheit (°F)";
+                break;
+            case 2 :
+                IO.print("Enter Temperature in Fahrenheit (°F) : ");
+                value = scanner.nextDouble();
+                result = (value - 32) * 5/9;
+                displayResult = value + " Fahrenheit (°F) = " + result + " Celsius (°C)";
+                break;
+        }
+
+        return displayResult;
+    }
+
+    //This method will convert KM <-> M and KG <-> G
     static String lengthWeightConverter(String type){
+
         String convertOption1 = "", convertOption2 = "", displayResult = "";
+        double value, result;
+
         if(Objects.equals(type, "Length")){
             convertOption1 = "Kilometers (KM)";
             convertOption2 = "Meters (M)";
@@ -115,19 +152,10 @@ public class Converter {
             convertOption1 = "Kilograms (KG)";
             convertOption2 = "Grams (G)";
         }
-        IO.print("1. Convert "+convertOption1+" -> "+convertOption2+" \n" +
-                "2. Convert "+convertOption2+" -> "+convertOption1+"\n " +
-                "Select Option (1/2) : ");
-        int option = scanner.nextInt();
-        try {
-            if (option != 1 && option !=2){
-                throw new IllegalArgumentException();
-            }
-        }catch (Exception e){
-            IO.println("Invalid option! Please select a correct option (1/2).");
-            lengthWeightConverter(type);
-        }
-        double value, result;
+        IO.print("1. Convert "+convertOption1+" -> "+convertOption2+"\n" +
+                 "2. Convert "+convertOption2+" -> "+convertOption1+"\n " +
+                 "Select Option (1/2) : ");
+        int option = getOption(1, 2);
         switch (option){
             case 1 :
                 IO.print("Enter Value in "+convertOption1+" : ");
@@ -162,6 +190,7 @@ public class Converter {
 //
 //    }
 
+    //This method computes BMI Value
     static String bmiConverter(){
         IO.print("Enter Height (M): ");
         double height = scanner.nextDouble();
@@ -173,6 +202,7 @@ public class Converter {
         return "BMI : " + bmiValue + "\nBMI Category : " + bmiCategory(bmiValue);
     }
 
+    //This method returns the BMI category
     static String bmiCategory(double bmiValue){
         String bmiCategory;
         if (bmiValue < 18.5) {
@@ -187,6 +217,7 @@ public class Converter {
         return  bmiCategory;
     }
 
+    //This method converts the student's Mark -> Grade
     static String gradeConverter(){
         IO.println("Enter Student's Mark (%) : ");
         int studentMark = scanner.nextInt();
@@ -216,6 +247,7 @@ public class Converter {
         return "Students Grade for Mark "+studentMark+" = " + studentGrade;
     }
 
+    //This method displays current date and time
     static void displayDateTime(){
         LocalDate today = LocalDate.now();
         LocalTime timeNow = LocalTime.now();
