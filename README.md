@@ -9,7 +9,9 @@ The program provides a **menu-driven interface** where users can choose a conver
 ## 📂 Project Structure
 ```
 src/main/java/se.lexicon/
-└─ Converter.java
+├─ Utility.java
+├─ Converter.java
+└─ Main.java
 ```
 
 ---
@@ -27,7 +29,7 @@ git clone https://github.com/jayani-athukorala/java-fundamentals2-workshop.git
 
 ```bash
 javac -d out src/main/java/se/lexicon/*.java
-java -cp out se.lexicon.Converter
+java -cp out se.lexicon.Main
 ```
 
 The converter menu will appear in the console where you can select different conversion options.
