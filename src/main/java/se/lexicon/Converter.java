@@ -67,12 +67,12 @@ public class Converter {
             case 6 :
                 result = speedConverter();
                 break;
-//            case 7 :
-//                result = fuelConsumptionConverter();
-//                break;
-//            case 8 :
-//                result = dataStorageConverter();
-//                break;
+            case 7 :
+                result = fuelConsumptionConverter();
+                break;
+            case 8 :
+                result = dataStorageConverter();
+                break;
             case 9 :
                 result = bmiConverter();
                 break;
@@ -272,13 +272,39 @@ public class Converter {
         return displayResult;
     }
 
-//    static double fuelConsumptionConverter(){
-//
-//    }
-//
-//    static double dataStorageConverter(){
-//
-//    }
+    //This method converts L/100km ↔ km/L
+    static String fuelConsumptionConverter(){
+        String displayResult = "";
+        double value, result;
+
+        IO.print("""
+                1. L/100KM <-> KM/L
+                2. KM/L <-> L/100KM
+                Select Option (1/2) :\s""");
+        int option = getOption(1, 2);
+
+        switch (option){
+            case 1 :
+                IO.print("Enter Fuel Consumption in L/100KM : ");
+                value = scanner.nextDouble();
+                result = 100/value;
+                displayResult = value + " L/100KM = " + result + " KM/L";
+                break;
+            case 2 :
+                IO.print("Enter Fuel Consumption in KM/L : ");
+                value = scanner.nextDouble();
+                result = 100/value;
+                displayResult = value + " KM/L = " + result + " L/100KM";
+                break;
+        }
+
+        return displayResult;
+    }
+
+    //This method converts KB ↔ MB ↔ GB
+    static String dataStorageConverter(){
+
+    }
 
     //This method computes BMI Value
     static String bmiConverter(){
