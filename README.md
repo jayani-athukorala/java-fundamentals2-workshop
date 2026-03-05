@@ -25,7 +25,7 @@ git clone https://github.com/jayani-athukorala/java-fundamentals2-workshop.git
 ```
 2. Open the project in your preferred IDE.
 
-3. Build and run Converter.java
+3. Build and run Main.java
 
 ```bash
 javac -d out src/main/java/se/lexicon/*.java
