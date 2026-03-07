@@ -48,6 +48,6 @@ public class ConversionResult {
      */
     @Override
     public String toString() {
-        return String.format("%d %.2f %s = %.2f %s", selectedSubOption, inputValue, fromUnit, resultValue, toUnit);
+        return String.format("%.2f %s = %.2f %s", inputValue, fromUnit, resultValue, toUnit);
     }
 }
