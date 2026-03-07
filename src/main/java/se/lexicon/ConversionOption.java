@@ -7,7 +7,7 @@ import java.util.function.Function;
  * This class stores the source unit, target unit, and the formula
  * used to convert a value from the source unit to the target unit.
  */
-class ConversionOption {
+public class ConversionOption {
 
     // The unit we are converting FROM (e.g., "Celsius")
     String fromUnit;

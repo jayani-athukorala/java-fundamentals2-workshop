@@ -46,8 +46,15 @@ public class ConversionResult {
      *
      * @return String representing the conversion in a readable format
      */
+    // Default toString
     @Override
     public String toString() {
+        // Clean output for normal display
         return String.format("%.2f %s = %.2f %s", inputValue, fromUnit, resultValue, toUnit);
+    }
+
+    // Method that includes selectedSubOption
+    public int displaySubOption() {
+        return selectedSubOption;
     }
 }

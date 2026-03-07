@@ -70,61 +70,58 @@ public class Main {
     static boolean handleConverter(int converterOption) {
         ConverterTool tool = null;
         String converterTitle;
+        boolean isGeneric = false;
 
-        // Determine if the selected option is a generic converter
+        // Determine converter type
         if (converterOption <= converters.length) {
             tool = converters[converterOption - 1];
+            converterTitle = tool.title;
+            isGeneric = true;
+        } else if (converterOption == converters.length + 1) {
+            converterTitle = "BMI Calculator – Compute BMI and category";
+        } else {
+            converterTitle = "Grade Converter – Percentage → Letter grade";
         }
 
-        boolean inSubMenu = false;
+        // Display header once
+        IO.println("------------------------------------------------");
+        IO.println(converterTitle);
+        IO.println("------------------------------------------------");
 
-        while (true) {
+        boolean inSubMenu = false;
+        int selectedSubOption = 0;
+        do {
             String result;
             ConversionResult conversion = null;
 
-            // Handle BMI calculator
-            if (converterOption == converters.length + 1) {
-                converterTitle = "BMI Calculator – Compute BMI and category";
-                result = bmiConverter();
-
-                // Handle Grade converter
-            } else if (converterOption == converters.length + 2) {
-                converterTitle = "Grade Converter – Percentage → Letter grade";
-                result = gradeConverter();
-
-                // Handle generic converters (currency, length, weight, etc.)
-            } else {
-                assert tool != null;
-                converterTitle = tool.title;
-                int selectedSubOption = 0; // index for first-time conversion
+            // Handle conversion
+            if (isGeneric) {
                 conversion = commonConverter(tool.options, inSubMenu, selectedSubOption);
-                result = conversion.toString();
+                selectedSubOption = conversion.displaySubOption();
+                result = conversion.toString(); // displayResult()
+            } else if (converterOption == converters.length + 1) {
+                result = bmiConverter();
+            } else {
+                result = gradeConverter();
             }
 
-            // Display conversion result with header
-            IO.println("------------------------------------------------");
-            IO.println(converterTitle);
-            IO.println("------------------------------------------------");
+            // Display result
             IO.println("Result: " + result);
             displayDateTime();
-
             pressEnterToContinue();
 
-            // Determine next action based on type of converter
-            boolean normalConverter = converterOption <= converters.length;
-            assert conversion != null;
+            // Handle sub-menu
             int nextOption;
-
-            if (normalConverter) {
+            if (isGeneric) {
                 // Generic converter sub-menu
                 IO.print(selectSubMenu(conversion.fromUnit, conversion.toUnit, converterTitle));
                 nextOption = Utility.validateOption(1, 4);
 
                 switch (nextOption) {
                     case 1 -> inSubMenu = true;  // Repeat same conversion
-                    case 2 -> inSubMenu = false; // Return to converter sub-menu
+                    case 2 -> inSubMenu = false; // Return to converter menu
                     case 3 -> { return true; }   // Return to main menu
-                    case 4 -> {                  // Exit application
+                    case 4 -> {                  // Exit
                         IO.println("Exiting the converter....\nThank you. Come Again!");
                         return false;
                     }
@@ -134,16 +131,16 @@ public class Main {
                 IO.print(selectSubMenu(converterTitle));
                 nextOption = Utility.validateOption(1, 3);
 
-                switch(nextOption){
-                    case 1 -> inSubMenu = false;  // Return to current converter
-                    case 2 -> { return true; }    // Return to main menu
-                    case 3 -> {                    // Exit application
+                switch(nextOption) {
+                    case 2 -> { return true; }    // Main menu
+                    case 3 -> {                   // Exit
                         IO.println("Exiting the converter....\nThank you. Come Again!");
                         return false;
                     }
                 }
             }
-        }
+
+        } while (true);
     }
 
     /**

@@ -50,7 +50,7 @@ public class Converter {
         } else {
             // Use externally provided selection for sub-menu scenario
             option = selectedSubmenu;
-            selected = options[option];
+            selected = options[option - 1];
         }
 
         // Prompt for input value in the selected unit
