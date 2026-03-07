@@ -43,24 +43,27 @@ The converter menu will appear in the console where you can select different con
 ## 📌 Converter Features
 
 ### Unit Conversions
-    | Converter Type | Units Supported |
-    |----------------|----------------|
-    | Currency       | SEK ↔ USD, SEK ↔ EUR |
-    | Temperature    | Celsius ↔ Fahrenheit |
-    | Length         | Kilometers ↔ Meters |
-    | Weight         | Kilograms ↔ Grams |
-    | Time           | Hours ↔ Minutes |
-    | Speed          | km/h ↔ m/s |
-    | Fuel Consumption | L/100km ↔ km/L |
-    | Data Storage   | KB ↔ MB ↔ GB |
+    | Converter Type    | Units Supported      |
+    |-------------------|----------------------|
+    | Currency          | SEK ↔ USD, SEK ↔ EUR |
+    | Temperature       | Celsius ↔ Fahrenheit |
+    | Length            | Kilometers ↔ Meters  |
+    | Weight            | Kilograms ↔ Grams    |
+    | Time              | Hours ↔ Minutes      |
+    | Speed             | km/h ↔ m/s           |
+    | Fuel Consumption  | L/100km ↔ km/L       |
+    | Data Storage      | KB ↔ MB ↔ GB         |
 
 ### Calculators
-- BMI Calculator – computes Body Mass Index and BMI category
-- Grade Converter – converts percentage marks to letter grades (A–F)
+    | Calculator Type   | Output               |
+    |-------------------|----------------------|
+    | BMI               | BMI. BMI Category    |
+    | Grade Converter   | Mark -> Grade (A-F)  |
 
 ---
 
 ## ⚡ Example output:
+
 ```
 ============= Converter App Menu ==============
 1. Currency Converter – SEK ↔ USD, SEK ↔ EUR
@@ -104,3 +107,5 @@ Converted at: 2026-03-07 16:31
 ================================================
 Press ENTER to continue...
 ```
+
+---
