@@ -25,7 +25,7 @@ src/main/java/se/lexicon/
     ```
 2. Maven (if you plan to build and run via Maven)
     ```bash
-        mvn -version
+      mvn -version
     ```
 ---
 
@@ -37,17 +37,15 @@ src/main/java/se/lexicon/
 
 ### Option 2: Run via Command Line
 ```bash
-    # Compile manually
-    javac -d out src/main/java/se/lexicon/*.java
-    
-    # Run
-    java -cp out se.lexicon.Main
+# Compile manually & Run
+javac -d out src/main/java/se/lexicon/*.java
+java -cp out se.lexicon.Main
 ```
 
 ### Option 3: Run via Maven
 ```bash
-    mvn clean package
-    java -jar target/java-fundamentals2-workshop-1.1.jar
+mvn clean package
+java -jar target/java-fundamentals2-workshop-1.1.jar
 ```
 The converter menu will appear in the console where you can select different conversion options.
 
@@ -82,7 +80,7 @@ You can download the latest release from [GitHub Releases](https://github.com/ja
 Run it with:
 
 ```bash
-java -jar java-fundamentals2-workshop-1.1.jar
+  java -jar java-fundamentals2-workshop-1.1.jar
 ```
 
 ---
