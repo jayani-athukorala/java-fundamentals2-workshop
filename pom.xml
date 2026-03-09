@@ -31,4 +31,12 @@
             </plugin>
         </plugins>
     </build>
+
+    <distributionManagement>
+        <repository>
+            <id>github</id>
+            <name>GitHub Apache Maven Packages</name>
+            <url>https://maven.pkg.github.com/jayani-athukorala/java-fundamentals2-workshop</url>
+        </repository>
+    </distributionManagement>
 </project>
