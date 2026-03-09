@@ -45,13 +45,12 @@ public class Converter {
             IO.print("Choose Option (1-" + options.length + ") : ");
 
             // Validate user's menu selection
-            option = Utility.validateOption(1, options.length);
-            selected = options[option - 1];
+            option = Utility.validateInt(1, options.length);
         } else {
             // Use externally provided selection for sub-menu scenario
             option = selectedSubmenu;
-            selected = options[option - 1];
         }
+        selected = options[option - 1];
 
         // Prompt for input value in the selected unit
         IO.print("Enter Value in " + selected.fromUnit + " : ");
@@ -106,7 +105,7 @@ public class Converter {
      */
     public static String gradeConverter(){
         IO.print("Enter Student's Mark (%) : ");
-        int studentMark = Utility.validateOption(0, 100);
+        int studentMark = Utility.validateInt(0, 100);
 
         return String.format("Mark %d %% = Grade %s", studentMark, ConverterFormulas.markToGrade(studentMark));
     }

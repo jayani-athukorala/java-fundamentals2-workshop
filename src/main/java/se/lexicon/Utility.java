@@ -13,7 +13,7 @@ public class Utility {
     public static final Scanner scanner = new Scanner(System.in);
 
     /**
-     * Validates integer input for menu options.
+     * Validates integer input.
      * Ensures that the user enters an integer within the specified range [min, max].
      * If the input is invalid (non-integer or out of range), prompts the user again.
      *
@@ -21,7 +21,7 @@ public class Utility {
      * @param max maximum allowed integer value
      * @return validated integer input from the user
      */
-    public static int validateOption(int min, int max){
+    public static int validateInt(int min, int max){
         int option;
         while (true){
             try {

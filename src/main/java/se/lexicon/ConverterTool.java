@@ -33,7 +33,7 @@ public class ConverterTool {
     public static ConverterTool[] converters = {
 
             // Currency Converter with SEK ↔ USD and SEK ↔ EUR
-            new ConverterTool("Currency Converter – SEK ↔ USD, SEK ↔ EUR", new ConversionOption[]{
+            new ConverterTool("Currency Converter - SEK <-> USD, SEK <-> EUR", new ConversionOption[]{
                     new ConversionOption("SEK", "USD", ConverterFormulas::sekToUsd),
                     new ConversionOption("USD", "SEK", ConverterFormulas::usdToSek),
                     new ConversionOption("SEK", "EUR", ConverterFormulas::sekToEur),
@@ -41,43 +41,43 @@ public class ConverterTool {
             }),
 
             // Temperature Converter with Celsius ↔ Fahrenheit
-            new ConverterTool("Temperature Converter – Celsius ↔ Fahrenheit", new ConversionOption[]{
+            new ConverterTool("Temperature Converter - Celsius <-> Fahrenheit", new ConversionOption[]{
                     new ConversionOption("°C", "°F", ConverterFormulas::celsiusToFahrenheit),
                     new ConversionOption("°F", "°C", ConverterFormulas::fahrenheitToCelsius)
             }),
 
             // Length Converter with Meters ↔ Kilometers
-            new ConverterTool("Length Converter – Meters ↔ Kilometers", new ConversionOption[]{
+            new ConverterTool("Length Converter - Meters <-> Kilometers", new ConversionOption[]{
                     new ConversionOption("M", "KM", ConverterFormulas::metersToKilometers),
                     new ConversionOption("KM", "M", ConverterFormulas::kilometersToMeters)
             }),
 
             // Weight Converter with Kilograms ↔ Grams
-            new ConverterTool("Weight Converter – Kilograms ↔ Grams", new ConversionOption[]{
+            new ConverterTool("Weight Converter - Kilograms <-> Grams", new ConversionOption[]{
                     new ConversionOption("KG", "G", ConverterFormulas::kilogramsToGrams),
                     new ConversionOption("G", "KG", ConverterFormulas::gramsToKilograms)
             }),
 
             // Time Converter with Hours ↔ Minutes
-            new ConverterTool("Time Converter – Hours ↔ Minutes", new ConversionOption[]{
+            new ConverterTool("Time Converter - Hours <-> Minutes", new ConversionOption[]{
                     new ConversionOption("Hours", "Minutes", ConverterFormulas::hoursToMinutes),
                     new ConversionOption("Minutes", "Hours", ConverterFormulas::minutesToHours)
             }),
 
             // Speed Converter with km/h ↔ m/s
-            new ConverterTool("Speed Converter – km/h ↔ m/s", new ConversionOption[]{
+            new ConverterTool("Speed Converter - km/h <-> m/s", new ConversionOption[]{
                     new ConversionOption("KM/H", "M/S", ConverterFormulas::kilometersPerHourToMetersPerSecond),
                     new ConversionOption("M/S", "KM/H", ConverterFormulas::metersPerSecondToKilometersPerHour)
             }),
 
             // Fuel Consumption Converter with L/100km ↔ km/L
-            new ConverterTool("Fuel Consumption Converter – L/100km ↔ km/L", new ConversionOption[]{
+            new ConverterTool("Fuel Consumption Converter - L/100km <-> km/L", new ConversionOption[]{
                     new ConversionOption("L/100KM", "KM/L", ConverterFormulas::litersPer100kmToKmPerLiter),
                     new ConversionOption("KM/L", "L/100KM", ConverterFormulas::kmPerLiterToLitersPer100km)
             }),
 
             // Data Storage Converter with KB ↔ MB ↔ GB
-            new ConverterTool("Data Storage Converter – KB ↔ MB ↔ GB", new ConversionOption[]{
+            new ConverterTool("Data Storage Converter - KB <-> MB <-> GB", new ConversionOption[]{
                     new ConversionOption("KB", "MB", ConverterFormulas::kiloBytesToMegaBytes),
                     new ConversionOption("MB", "KB", ConverterFormulas::megaBytesToKiloBytes),
                     new ConversionOption("MB", "GB", ConverterFormulas::megaBytesToGigaBytes),

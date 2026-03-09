@@ -17,25 +17,38 @@ src/main/java/se/lexicon/
 ```
 
 ---
+## ⚙️ Prerequisites
+
+1. Java Development Kit (JDK)
+    ```bash
+      java -version
+    ```
+2. Maven (if you plan to build and run via Maven)
+    ```bash
+        mvn -version
+    ```
+---
 
 ## 🛠 How to Run
 
-1. Clone the repository:
+### Option 1: Run via IDE
+1. Open the project in IntelliJ IDEA, Eclipse, or your preferred IDE
+2. Run `Main.java`
 
-    ```bash
-    git clone https://github.com/jayani-athukorala/java-fundamentals2-workshop.git
-    ```
-   
-2. Open the project in your preferred IDE.
+### Option 2: Run via Command Line
+```bash
+    # Compile manually
+    javac -d out src/main/java/se/lexicon/*.java
+    
+    # Run
+    java -cp out se.lexicon.Main
+```
 
-3. Build and run Main.java
-
-- If you are using command line: Compile and run application using commands below.
-    ```bash
-        javac -d out src/main/java/se/lexicon/*.java
-        java -cp out se.lexicon.Main
-    ```
-
+### Option 3: Run via Maven
+```bash
+    mvn clean package
+    java -jar target/java-fundamentals2-workshop-1.1.jar
+```
 The converter menu will appear in the console where you can select different conversion options.
 
 ---
@@ -59,6 +72,18 @@ The converter menu will appear in the console where you can select different con
     |-------------------|----------------------|
     | BMI               | BMI. BMI Category    |
     | Grade Converter   | Mark -> Grade (A-F)  |
+
+---
+
+## 📦 Download & Run Prebuilt JAR
+
+You can download the latest release from [GitHub Releases](https://github.com/jayani-athukorala/java-fundamentals2-workshop/releases).
+
+Run it with:
+
+```bash
+java -jar java-fundamentals2-workshop-1.1.jar
+```
 
 ---
 

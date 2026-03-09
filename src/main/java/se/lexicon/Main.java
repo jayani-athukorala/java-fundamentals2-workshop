@@ -51,13 +51,13 @@ public class Main {
         for (int i = 0; i < converters.length; i++) {
             IO.println((i + 1) + ". " + converters[i].title);
         }
-        IO.println((converters.length + 1) + ". BMI Calculator – Compute BMI and category");
-        IO.println((converters.length + 2) + ". Grade Converter – Percentage → Letter grade");
+        IO.println((converters.length + 1) + ". BMI Calculator - Compute BMI and category");
+        IO.println((converters.length + 2) + ". Grade Converter - Percentage -> Letter grade");
         IO.println((converters.length + 3) + ". Exit");
         IO.println("================================================");
 
         IO.print("Choose Option (1-" + (converters.length + 3) + "): ");
-        return Utility.validateOption(1, converters.length + 3);
+        return Utility.validateInt(1, converters.length + 3);
     }
 
     /**
@@ -78,9 +78,9 @@ public class Main {
             converterTitle = tool.title;
             isGeneric = true;
         } else if (converterOption == converters.length + 1) {
-            converterTitle = "BMI Calculator – Compute BMI and category";
+            converterTitle = "BMI Calculator - Compute BMI and category";
         } else {
-            converterTitle = "Grade Converter – Percentage → Letter grade";
+            converterTitle = "Grade Converter - Percentage -> Letter grade";
         }
 
         // Display header once
@@ -115,7 +115,7 @@ public class Main {
             if (isGeneric) {
                 // Generic converter sub-menu
                 IO.print(selectSubMenu(conversion.fromUnit, conversion.toUnit, converterTitle));
-                nextOption = Utility.validateOption(1, 4);
+                nextOption = Utility.validateInt(1, 4);
 
                 switch (nextOption) {
                     case 1 -> inSubMenu = true;  // Repeat same conversion
@@ -129,7 +129,7 @@ public class Main {
             } else {
                 // BMI or Grade converter sub-menu
                 IO.print(selectSubMenu(converterTitle));
-                nextOption = Utility.validateOption(1, 3);
+                nextOption = Utility.validateInt(1, 3);
 
                 switch(nextOption) {
                     case 2 -> { return true; }    // Main menu
